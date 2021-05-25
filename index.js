@@ -1,20 +1,31 @@
 /*
-запуск: node index.js {number}
-где number - верхний предел диапазона чисел
+запуск: node index.js {min} {max}
+где
+min - нижний предел диапазона чисел
+max - верхний предел диапазона чисел
 */
 const colors = require("colors/safe");
 
-let range = Number(process.argv[2]);
-getPrimeNumbers(range);
+let min = Number(process.argv[2]);
+let max = Number(process.argv[3]);
+getPrimeNumbers(min, max);
 
-function getPrimeNumbers(range) {
-    if (!Number.isInteger(range)) {
-        console.log(colors.red("Аргумент не является числом"));
+function getPrimeNumbers(min, max) {
+    if (!Number.isInteger(min) || !Number.isInteger(max)) {
+        console.log(colors.red("Аргумент не является целым числом"));
+        return;
+    }
+    if (min < 2 || max < 2) {
+        console.log(colors.red("Аргумент должен быть больше 1"));
+        return;
+    }
+    if (min > max) {
+        console.log(colors.red("Первый аргумент должен быть меньше второго"));
         return;
     }
     let numbers = [];
     nextPrime:
-    for (let i = 2; i <= range; i++) {
+    for (let i = min; i <= max; i++) {
         for (let j = 2; j < i; j++) {
             if (i % j === 0) {
                 continue nextPrime;
