@@ -31,7 +31,7 @@ function validateArguments(min, max) {
 }
 
 function findPrimeNumbers(min, max) {
-    let numbers = [];
+    const numbers = [];
         for (let i = min; i <= max; i++) {
             if (isPrime(i)) {
                 numbers.push(i);
@@ -41,7 +41,7 @@ function findPrimeNumbers(min, max) {
 }
 
 function isPrime(num) {
-    for(var i = 2; i < num; i++)
+    for(let i = 2; i < num; i++)
         if(num % i === 0) return false;
     return num > 1;
 }
