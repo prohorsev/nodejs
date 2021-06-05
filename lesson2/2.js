@@ -3,7 +3,6 @@
 * формат таймера ss-mm-hh-dd
 */
 
-const EventEmitter = require('events');
 const time1 = process.argv[2];
 
 const parseDate = (string) => {
@@ -26,39 +25,10 @@ const getDif = (dateFuture) => {
     return `${s}-${m}-${h}-${d}`;
 }
 
-const generateTimer = () => {
-    return delay(1000).then(() => getDif(parseDate(time1)));
-}
-
-class Handler {
-    static update(payload) {
-        console.log(payload);
-    }
-    static finish() {
-        console.log('Завершение работы');
-    }
-}
-
-const delay = (ms) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, ms);
-    });
-};
-
-class MyEmitter extends EventEmitter {}
-
-const emitterObject = new MyEmitter();
-
-emitterObject.on('update', Handler.update);
-emitterObject.on('finish', Handler.finish);
-
-const run = async () => {
-    const timer = await generateTimer();
+const run = setInterval(() => {
+    let timer = getDif(parseDate(time1));
+    console.log(timer);
     if (timer === '00-00-00-00') {
-        emitterObject.emit('finish');
+        clearInterval(run);
     }
-    emitterObject.emit('update', timer);
-    run();
-};
-
-run();
+}, 1000);
