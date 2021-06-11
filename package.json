@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
-    "event-stream": "^4.0.1"
+    "event-stream": "^4.0.1",
+    "inquirer": "^8.1.0",
+    "yargs": "^17.0.1"
   }
 }
