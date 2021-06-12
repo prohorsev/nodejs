@@ -1,5 +1,3 @@
-//89.123.1.41 и 34.48.240.111
-
 const fs = require('fs');
 const path = require("path");
 const inquirer = require("inquirer");
